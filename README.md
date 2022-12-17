@@ -35,6 +35,23 @@ module.exports = {
 };
 ```
 
+You can add your own methods to the default list
+
+```js
+const { default as plugin, defaultChainMethods } = require('babel-plugin-stats-about-using-chain-methods');
+
+module.exports = {
+    plugins: [
+        [
+            plugin,
+            {
+                chainMethods: ['sort' , ...defaultChainMethods], // write a list of methods
+            },
+        ],
+    ],
+};
+```
+
 ## Options
 
 ### chainMethods
@@ -44,7 +61,7 @@ By default it is equal to:
 
 ```
 
-['trim', 'join', 'filter', 'reduce', 'forEach', 'map']
+['trim', 'join', 'filter', 'reduce', 'forEach', 'map', 'some', 'every', 'find']
 
 ```
 

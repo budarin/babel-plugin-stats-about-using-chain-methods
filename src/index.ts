@@ -6,9 +6,12 @@ let currentPath = '';
 interface Options {
     chainMethods: string[];
 }
+
 const stats = {} as Record<string, number>;
 
-export default declare((api, { chainMethods = ['trim', 'join', 'filter', 'reduce', 'forEach', 'map'] }: Options) => {
+export const defaultChainMethods = ['trim', 'join', 'filter', 'reduce', 'forEach', 'map', 'some', 'every', 'find'];
+
+export default declare((api, { chainMethods = defaultChainMethods }: Options) => {
     return {
         name: 'stats-plugin',
 
