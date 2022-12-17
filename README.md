@@ -38,14 +38,14 @@ module.exports = {
 You can add your own methods to the default list
 
 ```js
-const { default as plugin, defaultChainMethods } = require('babel-plugin-stats-about-using-chain-methods');
+const statsBabelPlugin = require('babel-plugin-stats-about-using-chain-methods');
 
 module.exports = {
     plugins: [
         [
-            plugin,
+            statsBabelPlugin.default,
             {
-                chainMethods: ['sort' , ...defaultChainMethods], // write a list of methods
+                chainMethods: ['sort', ...statsBabelPlugin.defaultChainMethods],
             },
         ],
     ],
