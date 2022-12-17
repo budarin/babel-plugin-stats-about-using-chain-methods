@@ -16,6 +16,19 @@ or using yarn:
 yarn add -D babel-plugin-stats-about-using-chain-methods
 ```
 
+## Options
+
+### chainMethods
+
+Array of method names to collect usage statistics about.
+By default it is equal to:
+
+```
+
+['trim', 'join', 'filter', 'reduce', 'forEach', 'map', 'some', 'every', 'find']
+
+```
+
 ## Configure
 
 #### babel.config.js
@@ -50,19 +63,6 @@ module.exports = {
         ],
     ],
 };
-```
-
-## Options
-
-### chainMethods
-
-Array of method names to collect usage statistics about.
-By default it is equal to:
-
-```
-
-['trim', 'join', 'filter', 'reduce', 'forEach', 'map', 'some', 'every', 'find']
-
 ```
 
 ## Analyze code
