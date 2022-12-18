@@ -31,7 +31,23 @@ By default it is equal to:
 
 ## Configure
 
-#### babel.config.js
+#### Attention!
+
+To collect statistics correctly, the plugin must be the last in the list of registered plugins in babel config.
+
+#### Simple configuration
+
+babel.config.js
+
+```js
+const plugin = require('babel-plugin-stats-about-using-chain-methods').default;
+
+module.exports = {
+    plugins: [plugin],
+};
+```
+
+#### Configuration with custom methods list
 
 ```js
 const plugin = require('babel-plugin-stats-about-using-chain-methods').default;
@@ -48,7 +64,7 @@ module.exports = {
 };
 ```
 
-You can add your own methods to the default list
+#### Configuration with extending default methods list
 
 ```js
 const statsBabelPlugin = require('babel-plugin-stats-about-using-chain-methods');
