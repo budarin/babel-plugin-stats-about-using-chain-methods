@@ -67,14 +67,14 @@ module.exports = {
 #### Configuration with extending default methods list
 
 ```js
-const statsBabelPlugin = require('babel-plugin-stats-about-using-chain-methods');
+const plugin = require('babel-plugin-stats-about-using-chain-methods');
 
 module.exports = {
     plugins: [
         [
-            statsBabelPlugin.default,
+            plugin.default,
             {
-                chainMethods: ['sort', ...statsBabelPlugin.defaultChainMethods],
+                chainMethods: ['sort', ...plugin.defaultChainMethods],
             },
         ],
     ],
