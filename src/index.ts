@@ -37,6 +37,10 @@ export default declare((api, { chainMethods = defaultChainMethods }: Options) =>
                         const methodName = path.node.callee.property.name;
 
                         if (chainMethods.includes(methodName)) {
+                            if (methodName === 'join' && path.node.arguments.length > 1) {
+                                return;
+                            }
+
                             if (currentPath === '') {
                                 currentPath = methodName;
                             } else {
