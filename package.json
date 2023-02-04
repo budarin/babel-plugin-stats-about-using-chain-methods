@@ -1,6 +1,6 @@
 {
     "name": "babel-plugin-stats-about-using-chain-methods",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "description": "The plugin collects stats info about using chain methods in the code",
     "keywords": [
         "babel",

@@ -25,7 +25,13 @@ By default it is equal to:
 
 ```
 
-['trim', 'join', 'filter', 'reduce', 'forEach', 'map', 'some', 'every', 'find']
+[
+    'trim', 'join', 'filter',
+    'reduce', 'forEach', 'map',
+    'some', 'every', 'find',
+    'sort', 'keys', 'values',
+    'entries'
+]
 
 ```
 
@@ -40,24 +46,22 @@ To collect statistics correctly, the plugin must be the last in the list of regi
 babel.config.js
 
 ```js
-const plugin = require('babel-plugin-stats-about-using-chain-methods').default;
-
 module.exports = {
-    plugins: [plugin],
+    plugins: ['babel-plugin-stats-about-using-chain-methods'],
 };
 ```
 
 #### Configuration with custom methods list
 
 ```js
-const plugin = require('babel-plugin-stats-about-using-chain-methods').default;
+const { default: plugin, defaultChainMethods } = require('babel-plugin-stats-about-using-chain-methods');
 
 module.exports = {
     plugins: [
         [
             plugin,
             {
-                chainMethods: ['map', 'reduce'], // write a list of methods
+                chainMethods: ['enties', 'values', 'keys'],
             },
         ],
     ],
@@ -67,14 +71,14 @@ module.exports = {
 #### Configuration with extending default methods list
 
 ```js
-const plugin = require('babel-plugin-stats-about-using-chain-methods');
+const { default: plugin, defaultChainMethods } = require('babel-plugin-stats-about-using-chain-methods');
 
 module.exports = {
     plugins: [
         [
-            plugin.default,
+            plugin,
             {
-                chainMethods: ['sort', ...plugin.defaultChainMethods],
+                chainMethods: ['enties', 'values', 'keys', defaultChainMethods],
             },
         ],
     ],

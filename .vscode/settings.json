@@ -5,7 +5,7 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.minimap.enabled": false,
     "editor.suggestSelection": "first",
-    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorSmoothCaretAnimation": "on",
     "editor.smoothScrolling": true,
     "editor.codeActionsOnSave": {
         "source.fixAll": true,
