@@ -9,7 +9,21 @@ interface Options {
 
 const stats = {} as Record<string, number>;
 
-export const defaultChainMethods = ['trim', 'join', 'filter', 'reduce', 'forEach', 'map', 'some', 'every', 'find'];
+export const defaultChainMethods = [
+    'trim',
+    'join',
+    'filter',
+    'reduce',
+    'forEach',
+    'map',
+    'some',
+    'every',
+    'find',
+    'sort',
+    'keys',
+    'values',
+    'entries',
+];
 
 export default declare((api, { chainMethods = defaultChainMethods }: Options) => {
     return {
