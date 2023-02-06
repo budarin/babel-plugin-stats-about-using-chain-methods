@@ -53,7 +53,9 @@ export default declare<Options, PluginObj<PluginPass & State>>((api, options) =>
                         }
                     });
 
-                    console.log(state.stats);
+                    if (Object.keys(state.stats).length > 0) {
+                        console.log(state.stats);
+                    }
                 },
             },
 
