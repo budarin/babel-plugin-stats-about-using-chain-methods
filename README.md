@@ -85,6 +85,21 @@ module.exports = {
 };
 ```
 
+#### Output processed file name
+
+```js
+module.exports = {
+    plugins: [
+        [
+            'babel-plugin-stats-about-using-chain-methods',
+            {
+                printFileName: true,
+            },
+        ],
+    ],
+};
+```
+
 ## Analyze code
 
 Run the command

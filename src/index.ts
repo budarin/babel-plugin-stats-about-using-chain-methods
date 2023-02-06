@@ -20,6 +20,7 @@ export const defaultChainMethods = [
 ];
 
 interface Options {
+    printFileName: boolean;
     chainMethods: string[];
 }
 
@@ -30,7 +31,7 @@ type State = {
 
 // @ts-ignore
 export default declare<Options, PluginObj<PluginPass & State>>((api, options) => {
-    const { chainMethods = defaultChainMethods } = options;
+    const { chainMethods = defaultChainMethods, printFileName = false } = options;
 
     return {
         name: 'stats-plugin',
@@ -54,7 +55,9 @@ export default declare<Options, PluginObj<PluginPass & State>>((api, options) =>
                     });
 
                     if (Object.keys(state.stats).length > 0) {
-                        console.log(state.filename);
+                        if (printFileName) {
+                            console.log(state.filename);
+                        }
                         console.log(state.stats);
                     }
                 },
