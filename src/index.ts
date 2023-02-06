@@ -54,6 +54,7 @@ export default declare<Options, PluginObj<PluginPass & State>>((api, options) =>
                     });
 
                     if (Object.keys(state.stats).length > 0) {
+                        console.log(state.filename);
                         console.log(state.stats);
                     }
                 },
