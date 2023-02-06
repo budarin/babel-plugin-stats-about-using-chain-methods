@@ -1,6 +1,8 @@
 import * as t from '@babel/types';
 import { declare } from '@babel/helper-plugin-utils';
 
+import type { PluginObj, PluginPass } from '@babel/core';
+
 export const defaultChainMethods = [
     'trim',
     'join',
@@ -21,32 +23,42 @@ interface Options {
     chainMethods: string[];
 }
 
-export default declare((api, { chainMethods = defaultChainMethods }: Options) => {
-    let currentPath = '';
-    const stats = {} as Record<string, number>;
+type State = {
+    currentPath: string;
+    stats: Record<string, number>;
+};
+
+// @ts-ignore
+export default declare<Options, PluginObj<PluginPass & State>>((api, options) => {
+    const { chainMethods = defaultChainMethods } = options;
 
     return {
         name: 'stats-plugin',
 
         visitor: {
             Program: {
-                exit(): void {
-                    Object.keys(stats).forEach((key) => {
+                enter(_, state): void {
+                    state.currentPath = '';
+                    state.stats = {} as Record<string, number>;
+                },
+
+                exit(_, state): void {
+                    Object.keys(state.stats).forEach((key) => {
                         if (key.includes('.')) {
                             const newKey = key.split('.').reverse().join('.');
-                            const value = stats[key];
+                            const value = state.stats[key];
 
-                            delete stats[key];
-                            stats[newKey] = value;
+                            delete state.stats[key];
+                            state.stats[newKey] = value;
                         }
                     });
 
-                    console.log(stats);
+                    console.log(state.stats);
                 },
             },
 
             CallExpression: {
-                enter(path): void {
+                enter(path, state): void {
                     if (t.isMemberExpression(path.node.callee) && t.isIdentifier(path.node.callee.property)) {
                         const methodName = path.node.callee.property.name;
 
@@ -55,16 +67,16 @@ export default declare((api, { chainMethods = defaultChainMethods }: Options) =>
                                 return;
                             }
 
-                            if (currentPath === '') {
-                                currentPath = methodName;
+                            if (state.currentPath === '') {
+                                state.currentPath = methodName;
                             } else {
-                                currentPath = currentPath + '.' + methodName;
+                                state.currentPath = state.currentPath + '.' + methodName;
                             }
 
-                            if (!stats[currentPath]) {
-                                stats[currentPath] = 1;
+                            if (!state.stats[state.currentPath]) {
+                                state.stats[state.currentPath] = 1;
                             } else {
-                                stats[currentPath]++;
+                                state.stats[state.currentPath]++;
                             }
 
                             let next = path.node.callee.object;
@@ -75,21 +87,21 @@ export default declare((api, { chainMethods = defaultChainMethods }: Options) =>
                                 t.isIdentifier(next.callee.property) &&
                                 chainMethods.includes(next.callee.property.name)
                             ) {
-                                currentPath = currentPath + '.' + next.callee.property.name;
+                                state.currentPath = state.currentPath + '.' + next.callee.property.name;
 
-                                if (!stats[currentPath]) {
-                                    stats[currentPath] = 1;
+                                if (!state.stats[state.currentPath]) {
+                                    state.stats[state.currentPath] = 1;
                                 } else {
-                                    stats[currentPath]++;
+                                    state.stats[state.currentPath]++;
                                 }
 
                                 next = next.callee.object;
                             }
 
-                            currentPath = '';
+                            state.currentPath = '';
                         }
                     } else {
-                        currentPath = '';
+                        state.currentPath = '';
                     }
                 },
             },
