@@ -1,14 +1,6 @@
 import * as t from '@babel/types';
 import { declare } from '@babel/helper-plugin-utils';
 
-let currentPath = '';
-
-interface Options {
-    chainMethods: string[];
-}
-
-const stats = {} as Record<string, number>;
-
 export const defaultChainMethods = [
     'trim',
     'join',
@@ -25,7 +17,14 @@ export const defaultChainMethods = [
     'entries',
 ];
 
+interface Options {
+    chainMethods: string[];
+}
+
 export default declare((api, { chainMethods = defaultChainMethods }: Options) => {
+    let currentPath = '';
+    const stats = {} as Record<string, number>;
+
     return {
         name: 'stats-plugin',
 
@@ -41,6 +40,7 @@ export default declare((api, { chainMethods = defaultChainMethods }: Options) =>
                             stats[newKey] = value;
                         }
                     });
+
                     console.log(stats);
                 },
             },
