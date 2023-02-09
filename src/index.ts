@@ -104,6 +104,8 @@ export default declare<Options, PluginObj<PluginPass & State>>((api, options) =>
                                 state.stats[state.currentPath]++;
                             }
 
+                            state.currentPath = '';
+
                             path.skip();
                         }
                     }
