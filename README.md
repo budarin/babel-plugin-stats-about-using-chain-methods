@@ -58,7 +58,13 @@ module.exports = {
         [
             plugin,
             {
-                chainMethods: ['sort', 'pop', 'unshift', ...defaultChainMethods],
+                chainMethods: [
+                    'sort',
+                    'pop',
+                    'unshift',
+                    // list of default methods
+                    ...defaultChainMethods,
+                ],
             },
         ],
     ],
