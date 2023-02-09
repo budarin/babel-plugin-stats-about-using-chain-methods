@@ -41,7 +41,7 @@ export default declare<Options, PluginObj<PluginPass & State>>((api, options) =>
     const { chainMethods = defaultChainMethods, printFileName = false } = options;
 
     return {
-        name: 'stats-plugin',
+        name: 'babel-plugin-stats-about-using-chain-methods',
 
         visitor: {
             Program: {
@@ -86,12 +86,6 @@ export default declare<Options, PluginObj<PluginPass & State>>((api, options) =>
                                 state.currentPath = state.currentPath + '.' + methodName;
                             }
 
-                            if (!state.stats[state.currentPath]) {
-                                state.stats[state.currentPath] = 1;
-                            } else {
-                                state.stats[state.currentPath]++;
-                            }
-
                             let next = path.node.callee.object;
 
                             while (
@@ -101,20 +95,17 @@ export default declare<Options, PluginObj<PluginPass & State>>((api, options) =>
                                 chainMethods.includes(next.callee.property.name)
                             ) {
                                 state.currentPath = state.currentPath + '.' + next.callee.property.name;
-
-                                if (!state.stats[state.currentPath]) {
-                                    state.stats[state.currentPath] = 1;
-                                } else {
-                                    state.stats[state.currentPath]++;
-                                }
-
                                 next = next.callee.object;
                             }
 
-                            state.currentPath = '';
+                            if (!state.stats[state.currentPath]) {
+                                state.stats[state.currentPath] = 1;
+                            } else {
+                                state.stats[state.currentPath]++;
+                            }
+
+                            path.skip();
                         }
-                    } else {
-                        state.currentPath = '';
                     }
                 },
             },
