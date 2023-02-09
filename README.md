@@ -27,8 +27,8 @@ By default it is equal to:
 ```
 [
     'entries', 'every', 'filter', 'find', 'flat', 'flatMap', 'forEach',
-    'includes', 'indexOf', 'join', 'keys', 'keys', 'map', 'reduce',
-    'reverse', 'slice', 'some', 'sort', 'splice', 'trim', 'values'
+    'includes', 'indexOf', 'join', 'keys', 'map', 'reduce', 'reverse',
+    'slice', 'some', 'sort', 'splice', 'trim', 'values'
 ]
 ```
 
