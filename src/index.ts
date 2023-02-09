@@ -13,10 +13,19 @@ export const defaultChainMethods = [
     'some',
     'every',
     'find',
+    'flat',
+    'flatMap',
     'sort',
+    'slice',
+    'splice',
     'keys',
     'values',
     'entries',
+    'indexOf',
+    'includes',
+    'reverse',
+    'keys',
+    'values',
 ];
 
 interface Options {
