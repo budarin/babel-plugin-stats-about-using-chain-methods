@@ -1,6 +1,6 @@
 # babel-plugin-stats-about-using-chain-methods
 
-The plugin collects stats info about using chain methods in the code
+The plugin collects stats info about using chains of methods calls in the code
 
 ## Install
 
@@ -21,18 +21,15 @@ yarn add -D babel-plugin-stats-about-using-chain-methods
 ### chainMethods
 
 Array of method names to collect usage statistics about.
+
 By default it is equal to:
 
 ```
-
 [
-    'trim', 'join', 'filter',
-    'reduce', 'forEach', 'map',
-    'some', 'every', 'find',
-    'sort', 'keys', 'values',
-    'entries'
+    'entries', 'every', 'filter', 'find', 'flat', 'flatMap', 'forEach',
+    'includes', 'indexOf', 'join', 'keys', 'keys', 'map', 'reduce',
+    'reverse', 'slice', 'some', 'sort', 'splice', 'trim', 'values', 'values'
 ]
-
 ```
 
 ## Configure
@@ -51,23 +48,6 @@ module.exports = {
 };
 ```
 
-#### Configuration with custom methods list
-
-```js
-const { default: plugin, defaultChainMethods } = require('babel-plugin-stats-about-using-chain-methods');
-
-module.exports = {
-    plugins: [
-        [
-            plugin,
-            {
-                chainMethods: ['enties', 'values', 'keys'],
-            },
-        ],
-    ],
-};
-```
-
 #### Configuration with extending default methods list
 
 ```js
@@ -78,7 +58,22 @@ module.exports = {
         [
             plugin,
             {
-                chainMethods: ['enties', 'values', 'keys', defaultChainMethods],
+                chainMethods: ['sort', 'pop', 'unshift', ...defaultChainMethods],
+            },
+        ],
+    ],
+};
+```
+
+#### Configuration with custom methods list
+
+```js
+module.exports = {
+    plugins: [
+        [
+            'babel-plugin-stats-about-using-chain-method',
+            {
+                chainMethods: ['enties', 'values', 'keys'],
             },
         ],
     ],
