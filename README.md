@@ -135,3 +135,7 @@ Example output
 }
 
 ```
+
+## Wishes
+
+Feel free to write your suggestions on other types of statistics: what kind of information about the code would be interesting to you.
