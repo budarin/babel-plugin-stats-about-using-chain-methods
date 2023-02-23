@@ -132,6 +132,7 @@ Example output
     'map.reduce': 1,
     'map.map': 1,
     'join.trim': 3,
+    'binary expression with literals': 20
 }
 
 ```

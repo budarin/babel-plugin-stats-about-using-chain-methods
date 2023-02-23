@@ -36,6 +36,8 @@ type State = {
     stats: Record<string, number>;
 };
 
+const BINARY_EXPR_WITH_LITERALS = 'binary expression with literals';
+
 // @ts-ignore
 export default declare<Options, PluginObj<PluginPass & State>>((api, options) => {
     const { chainMethods = defaultChainMethods, printFileName = false } = options;
@@ -66,6 +68,26 @@ export default declare<Options, PluginObj<PluginPass & State>>((api, options) =>
                             console.log(state.filename);
                         }
                         console.log(state.stats);
+                    }
+                },
+            },
+
+            BinaryExpression: {
+                enter(path, state) {
+                    if (path.node.left.type === 'NumericLiteral' && path.node.right.type === 'NumericLiteral') {
+                        if (!state.stats[BINARY_EXPR_WITH_LITERALS]) {
+                            state.stats[BINARY_EXPR_WITH_LITERALS] = 1;
+                        } else {
+                            state.stats[BINARY_EXPR_WITH_LITERALS]++;
+                        }
+                    }
+
+                    if (path.node.left.type === 'StringLiteral' && path.node.right.type === 'StringLiteral') {
+                        if (!state.stats[BINARY_EXPR_WITH_LITERALS]) {
+                            state.stats[BINARY_EXPR_WITH_LITERALS] = 1;
+                        } else {
+                            state.stats[BINARY_EXPR_WITH_LITERALS]++;
+                        }
                     }
                 },
             },
