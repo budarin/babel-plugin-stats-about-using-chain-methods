@@ -15,19 +15,19 @@
     "license": "MIT",
     "private": false,
     "devDependencies": {
-        "@types/babel__helper-plugin-utils": "^7.10.0",
-        "@typescript-eslint/eslint-plugin": "^5.46.1",
-        "@typescript-eslint/parser": "^5.46.1",
-        "eslint": "^8.29.0",
-        "eslint-plugin-import": "^2.26.0",
+        "@types/babel__helper-plugin-utils": "^7.10.3",
+        "@typescript-eslint/eslint-plugin": "^6.11.0",
+        "@typescript-eslint/parser": "^6.11.0",
+        "eslint": "^8.53.0",
+        "eslint-plugin-import": "^2.29.0",
         "eslint-plugin-node": "^11.1.0",
-        "prettier": "^2.8.1",
-        "typescript": "^4.9.4",
-        "zx": "^7.1.1"
+        "prettier": "^3.1.0",
+        "typescript": "^5.2.2",
+        "zx": "^7.2.3"
     },
     "dependencies": {
-        "@babel/helper-plugin-utils": "^7.20.2",
-        "@babel/types": "^7.20.5"
+        "@babel/helper-plugin-utils": "^7.22.5",
+        "@babel/types": "^7.23.3"
     },
     "scripts": {
         "build": "tsc",
